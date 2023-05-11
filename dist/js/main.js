@@ -1,8 +1,13 @@
 "use strict";
-const EsParOImpar = () => {
-    while (true) {
-        const I = parseFloat(prompt('INGRESE EL VALOR DE LA CORRIENTE \n I =>')), R = parseFloat(prompt('INGRESE EL VALOR DE LA RESISTENCIA \n R =>')), V = I * R;
-        alert(`EL VOLTAJE DEL CICUITO CON CORRIENTE I = ${I}; RESISTENCIA R = ${R}\n NOS DA UN VOTAJE DE V = ${V}`);
+let edadDeLaPersonaConMayorEdad = 0, nombreDeLaPersonaConMayorEdad = '';
+for (let i = 0; i < 3; i++) {
+    const NombreDeLaPersona = prompt(`INGRESA LA EDAD DE LA PERSONA ${i + 1}`), EdadDeLaPersona = parseInt(prompt(`INGRESA LA EDAD DE LA PERSONA ${1 + 1}`));
+    if (edadDeLaPersonaConMayorEdad < EdadDeLaPersona) {
+        edadDeLaPersonaConMayorEdad = EdadDeLaPersona;
+        nombreDeLaPersonaConMayorEdad = NombreDeLaPersona;
     }
-};
-EsParOImpar();
+}
+alert(`
+LA PERSONA ${nombreDeLaPersonaConMayorEdad} CON LA EDAD\n 
+DE ${edadDeLaPersonaConMayorEdad} ES LA PERSONA CON MAYOR EDAD
+`);

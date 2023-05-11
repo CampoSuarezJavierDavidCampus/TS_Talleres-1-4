@@ -1,19 +1,25 @@
 /* TALLER 02 */
 /* ///////////////////////////////////////////////////////////// */
 /* 
-3. Construir el algoritmo para determinar el voltaje de un
-circuito a partir de la resistencia y la intensidad de corriente.
+4. Construir el algoritmo que solicite el nombre y edad de 3
+personas y determine el nombre de la persona con mayor edad.
 */
+let 
+edadDeLaPersonaConMayorEdad:number = 0,
+nombreDeLaPersonaConMayorEdad:string = '';
 
-const EsParOImpar = ():never=>{
-    while (true) {
-        const 
-        I:number = parseFloat(prompt('INGRESE EL VALOR DE LA CORRIENTE \n I =>') as string),
-        R:number = parseFloat(prompt('INGRESE EL VALOR DE LA RESISTENCIA \n R =>') as string),
-        V:number =  I * R;
 
-        alert(`EL VOLTAJE DEL CICUITO CON CORRIENTE I = ${I}; RESISTENCIA R = ${R}\n NOS DA UN VOTAJE DE V = ${V}`);
+for (let i = 0; i < 3; i++) {
+    const 
+    NombreDeLaPersona:string = prompt(`INGRESA LA EDAD DE LA PERSONA ${i +1}`) as string,
+    EdadDeLaPersona:number = parseInt(prompt(`INGRESA LA EDAD DE LA PERSONA ${1 + 1}`) as string);
+    if(edadDeLaPersonaConMayorEdad < EdadDeLaPersona) {
+        edadDeLaPersonaConMayorEdad = EdadDeLaPersona;
+        nombreDeLaPersonaConMayorEdad = NombreDeLaPersona;
     }
 }
 
-EsParOImpar();
+alert(`
+LA PERSONA ${nombreDeLaPersonaConMayorEdad} CON LA EDAD\n 
+DE ${edadDeLaPersonaConMayorEdad} ES LA PERSONA CON MAYOR EDAD
+`);
