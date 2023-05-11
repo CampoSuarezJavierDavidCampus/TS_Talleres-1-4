@@ -1,3 +1,12 @@
 "use strict";
-var esTercerMundista = true, idioma = 'Español';
-console.log("\n    AHORA SON CONSTANTES:\n    mi pais ".concat(esTercerMundista ? 'es' : 'no es', " Tercer Mundista,\n    ademas hablamos ").concat(idioma, "\n"));
+var continente, pais, departamento, ciudad, barrio, direccion, descripción, poblacion, personasQueHablanIngles;
+continente = 'america';
+pais = 'colombia';
+departamento = 'santander';
+ciudad = 'bucaramanga';
+barrio = 'san Alonso';
+direccion = 'calle 21 #28-25';
+poblacion = parseFloat(prompt('ingerse el numero de habitantes que hay en su pais'));
+personasQueHablanIngles = parseInt(prompt('En Su barrio cuantas personas hablan ingles'));
+descripción = "\n    Estoy vivo en el continente de ".concat(continente, ", en\n\n    un pais llamado ").concat(pais, ", en donde estoy ubicado en el\n\n    departamento de ").concat(departamento, " dentro de la ciudad de ").concat(ciudad, ",\n    en el barrio ").concat(barrio, " con direccion ").concat(direccion, ",\n\n    hay ").concat(personasQueHablanIngles, " personas que hablan ingles.\n");
+console.log("\n    La mitad de la poblacion es de ".concat(poblacion / 2, ".\n\n    Mi pais tiene ").concat(poblacion > 6000000 ? 'mas' : 'menos', " gente que finlandia.\n\n    Mi pais esta por ").concat(poblacion > 33000000 ? 'encima' : 'debajo', " que el promedio.\n\n    ").concat(descripción, "\n"));
