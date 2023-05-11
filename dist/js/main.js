@@ -1,8 +1,8 @@
 "use strict";
 const EsParOImpar = () => {
     while (true) {
-        const Numero = parseInt(prompt('INGRESE UN NUMERO PARA INDICAR SI ES PAR O IMPAR'));
-        alert(`EL NUMERO INGRESADO ES ${Numero % 2 == 0 ? 'PAR' : 'IMPAR'}`);
+        const I = parseFloat(prompt('INGRESE EL VALOR DE LA CORRIENTE \n I =>')), R = parseFloat(prompt('INGRESE EL VALOR DE LA RESISTENCIA \n R =>')), V = I * R;
+        alert(`EL VOLTAJE DEL CICUITO CON CORRIENTE I = ${I}; RESISTENCIA R = ${R}\n NOS DA UN VOTAJE DE V = ${V}`);
     }
 };
 EsParOImpar();
