@@ -1,16 +1,14 @@
 "use strict";
-let texto = ' hola mundo ';
-let arrTexto = texto.split(' ');
-console.log(`
-    EJEMPLO DE USO DE ALGUNOS METODOS DE CADENA 
-    TEXTO NORMAL. "${texto}".\n    
-    PROPIEDAD "length": "${texto.length}"\n
-    PROPIEDAD "toLowerCase": "${texto.toLowerCase()}"\n
-    PROPIEDAD "toUpperCase": "${texto.toUpperCase()}"\n
-    METHODO "trimStart()": "${texto.trimStart()}"\n
-    METHODO "trimEnd()": "${texto.trimEnd()}"\n
-    METHODO "replace": ${texto.replace('hola', 'hi')}\n
-    METHODO "split": ${texto.split(' ')}\n    
-    METHODO "slice": ${arrTexto.slice(0, 2)}\n
-    METHODO "includes": ${arrTexto.includes('mundo')}\n
-`);
+const promedio = (...numerosIngresados) => {
+    const CantidadDeNumerosIngresados = numerosIngresados.length, ResultadoDelPromedio = numerosIngresados.reduce((numeroAnterios, NumeroAcctual) => numeroAnterios + NumeroAcctual) / CantidadDeNumerosIngresados;
+    return Math.round(ResultadoDelPromedio);
+}, SumarNumeros = () => {
+    var _a;
+    while (true) {
+        let numerosIngresados = (_a = prompt('Ingrese los valores de sus calificaciones, separelas por "," \n=>')) === null || _a === void 0 ? void 0 : _a.split(',').map((num) => parseInt(num)), resultadoDelPromedio = 0;
+        if (typeof numerosIngresados !== 'undefined')
+            resultadoDelPromedio = promedio(...numerosIngresados);
+        alert(`EL PROMEDIO DE LA SUMATORIA ES DE: ${resultadoDelPromedio}`);
+    }
+};
+SumarNumeros();

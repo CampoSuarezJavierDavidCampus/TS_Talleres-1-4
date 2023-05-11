@@ -1,41 +1,28 @@
-/* TALLER 01 */
+/* TALLER 02 */
 /* ///////////////////////////////////////////////////////////// */
 /* 
-Cree 10 variables de tipo cadena donde almacene valores string en
-Ingles y aplique cada una de los siguientes métodos de cadena
-1.
-length
-2.
-includes()
-3.
-back ticks o templatre strings
-4.
-trimStart()
-5.
-trimEnd()
-6.
-replace
-7.
-slice
-8.
-split
-9.
-ToUpperCase
-10.
-ToLowerCase
+1. Construir el algoritmo para un programa que ingrese tres
+notas de un alumno, si el promedio es menor o igual a 3.9
+mostrar un mensaje "Estudie“, de lo contrario un mensaje que
+diga "becado"
 */
-let texto:string = ' hola mundo ';
-let arrTexto:string[] = texto.split(' ')
-console.log(`
-    EJEMPLO DE USO DE ALGUNOS METODOS DE CADENA 
-    TEXTO NORMAL. "${texto}".\n    
-    PROPIEDAD "length": "${texto.length}"\n
-    PROPIEDAD "toLowerCase": "${texto.toLowerCase()}"\n
-    PROPIEDAD "toUpperCase": "${texto.toUpperCase()}"\n
-    METHODO "trimStart()": "${texto.trimStart()}"\n
-    METHODO "trimEnd()": "${texto.trimEnd()}"\n
-    METHODO "replace": ${texto.replace('hola','hi')}\n
-    METHODO "split": ${texto.split(' ')}\n    
-    METHODO "slice": ${arrTexto.slice(0,2)}\n
-    METHODO "includes": ${arrTexto.includes('mundo')}\n
-`);
+
+const promedio = (...numerosIngresados:number[]):number=>{
+    const CantidadDeNumerosIngresados = numerosIngresados.length,
+    ResultadoDelPromedio:number = numerosIngresados.reduce((numeroAnterios,NumeroAcctual)=>numeroAnterios + NumeroAcctual)/CantidadDeNumerosIngresados;    
+    return Math.round(ResultadoDelPromedio);
+},
+SumarNumeros = ():never=>{
+    while (true) {
+        let numerosIngresados:number[] | undefined= prompt('Ingrese los valores de sus calificaciones, separelas por "," \n=>')?.split(',').map((num)=>parseInt(num)),
+        resultadoDelPromedio:number= 0;
+        
+        if(typeof numerosIngresados !== 'undefined' ) resultadoDelPromedio = promedio(...numerosIngresados);
+
+        alert(`EL PROMEDIO DE LA SUMATORIA ES DE: ${resultadoDelPromedio}`)
+    }
+};
+
+SumarNumeros();
+
+
