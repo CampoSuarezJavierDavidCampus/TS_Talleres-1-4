@@ -1,22 +1,24 @@
 /* TALLER 01 */
 /* ///////////////////////////////////////////////////////////// */
 /* 
-2.
+3.
 a.
-Declare una variable llamada 'esTercerMundista' y
-establezca su valor de acuerdo con su país. La variable debe
-contener un valor booleano. También declarar una variable
-'idioma', pero no le asigne ningún valor todavía.
+Establezca el valor de 'idioma' en el idioma que se
+habla donde vive.
 b.
-Registrar los valores de 'esTercerMundista',
-'continente', 'país' e 'idioma'
+Piense en qué variables deberían ser variables
+constantes (¿qué valores nunca cambian y cuáles podrían
+cambiar?). Luego, cambia estas variables a const.
+c.
+observe lo que sucede.
 */
 
-let 
+const
 esTercerMundista:boolean = true,
 idioma:string = 'Español';
 
 console.log(`
+    AHORA SON CONSTANTES:
     mi pais ${esTercerMundista?'es':'no es'} Tercer Mundista,
     ademas hablamos ${idioma}
 `);
