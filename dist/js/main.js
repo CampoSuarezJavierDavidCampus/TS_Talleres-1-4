@@ -1,13 +1,5 @@
 "use strict";
-let edadDeLaPersonaConMayorEdad = 0, nombreDeLaPersonaConMayorEdad = '';
-for (let i = 0; i < 3; i++) {
-    const NombreDeLaPersona = prompt(`INGRESA LA EDAD DE LA PERSONA ${i + 1}`), EdadDeLaPersona = parseInt(prompt(`INGRESA LA EDAD DE LA PERSONA ${1 + 1}`));
-    if (edadDeLaPersonaConMayorEdad < EdadDeLaPersona) {
-        edadDeLaPersonaConMayorEdad = EdadDeLaPersona;
-        nombreDeLaPersonaConMayorEdad = NombreDeLaPersona;
-    }
-}
-alert(`
-LA PERSONA ${nombreDeLaPersonaConMayorEdad} CON LA EDAD\n 
-DE ${edadDeLaPersonaConMayorEdad} ES LA PERSONA CON MAYOR EDAD
-`);
+const Numero01 = parseInt(prompt('INGRESE EL PRIMER NUMERO')), Numero02 = parseInt(prompt('INGRESE EL SEGUNDO NUMERO'));
+Numero01 > Numero02
+    ? alert(`LA SUMA DE ${Numero01} CON ${Numero02} ES ${Numero01 + Numero02} Y SU DIFERENCIA ${Numero01 - Numero02}`)
+    : alert(`EL PRODUCTO DE ${Numero01} CON ${Numero02} ES ${Numero01 * Numero02} Y SU DIVICION ${Numero02 / Numero02}`);
