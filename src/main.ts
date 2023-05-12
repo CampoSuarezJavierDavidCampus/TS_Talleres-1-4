@@ -1,76 +1,37 @@
 /* TALLER 02 */
 /* ///////////////////////////////////////////////////////////// */
 /* 
-6. Construir el algoritmo en Javascript para un programa
-para cualquier cantidad de estudiantes que lea el nombre,
-el sexo y la nota definitiva y halle al estudiante con la mayor
-nota y al estudiante con la menor nota y cuantos eran
-hombres y cuantos mujeres.
-
+7. Programa que pida el ingreso del nombre y precio de un artículo y la
+cantidad que lleva el cliente. Mostrar lo que debe pagar el comprador
+en su factura.
 */
-type Estudiante = {
+type Articulo = {
     nombre:string,
-    genero: 'M'|'F',
-    nota:number
+    precio:number,
+    cantidad:number
 }
 
-function obtenerEstudiantes():Estudiante[] {
-    let estudiantes:Estudiante[] = []
+function registrarArticulos():Articulo[]{
+    let articulos:Articulo[] = [];
     do {
-        let
-        nombreEstudiante = prompt('INGRESA EL NOMBRE DEL ESTUDIANTE')?.trim().toLocaleUpperCase() as string,
-        generoEstudiante = prompt('INGRESA EL GENERO DEL ESTUDIANTE\nM/F=>')?.trim().toLocaleUpperCase() as string,
-        notaEstudiante = parseFloat(prompt('INGRESA LA NOTA DEL ESTUDIANTE=>') as string);
-        if((generoEstudiante !== 'M' && generoEstudiante !== 'F') || nombreEstudiante.length == 0) continue;
-
-        const nuevoEstudiante:Estudiante = {
-            nombre: nombreEstudiante,        
-            genero: generoEstudiante,
-            nota: notaEstudiante
-        }
-
-        estudiantes.unshift(nuevoEstudiante);    
-    } while (prompt('DESEA AGREGAR ALGUN ESTUDAIANTE\nDIGITE "SI" PARA CONTINUAR.=>')?.toUpperCase() == 'SI');
-    return estudiantes;
+        const NuevoArticulo:Articulo = {
+            nombre: prompt(`INGRESA EL NOMBRE DEL PRODUCTO\n=>`) as string,
+            precio: parseFloat(prompt(`INGRESA EL PRECIO DEL PRODUCTO\n=>`) as string),
+            cantidad: parseInt(prompt(`INGRESA LA CANTIDAD DE ARTICULOS QUE EL CLIENTE LLEVARA`) as string)
+        };
+        articulos.unshift(NuevoArticulo)
+    } while (prompt('DESEA REGISTRAR OTRO PRODUCTO?\nDIGITE "SI" PARA CONTINUAR. =>')?.toLocaleUpperCase()=='SI');
+    return articulos;
 }
 
-function obtenerEstudianteMayorOMenorNota(estudiantes:Estudiante[],solicitudDeLaMayorNota:boolean = true):string{
-    let estudianteMayorNota = estudiantes.reduce((estudianteAnterior:Estudiante,estudianteSiguiente:Estudiante):Estudiante=>{
-        if(solicitudDeLaMayorNota)return mayorNota(estudianteAnterior,estudianteSiguiente);
-        return menorNota(estudianteAnterior,estudianteSiguiente);
-    });
-
-    return `EL ESTUDIANTE ${estudianteMayorNota.nombre}
-     CON LA NOTA DE ${estudianteMayorNota.nota} POSEE LA ${solicitudDeLaMayorNota?'MAYOR':'MENOR'} NOTA`;
-}
-
-function mayorNota(estudianteAnterior:Estudiante,estudianteSiguiente:Estudiante):Estudiante{
-    if(estudianteAnterior.nota < estudianteSiguiente.nota) return estudianteSiguiente;
-    return estudianteAnterior;
-}
-
-function menorNota(estudianteAnterior:Estudiante,estudianteSiguiente:Estudiante):Estudiante{
-    if(estudianteAnterior.nota > estudianteSiguiente.nota) return estudianteSiguiente;
-    return estudianteAnterior;
-}
-
-function conteoDeGenerosDeLosEstudiantes(estudiantes:Estudiante[]):string{
-    let
-        contadorDeM:number = 0,
-        contadorDeF:number = 0;
-    estudiantes.forEach((estudiante:Estudiante):void=>{
-        estudiante.genero == 'F'?contadorDeF++:contadorDeM++;
+function mostrarLoQueDebePagar(articulos:Articulo[]):string{
+    let factura:string = '';
+    articulos.forEach((articulo:Articulo)=>{
+        let {nombre,cantidad,precio} =  articulo
+        factura+=`${nombre}: ${precio} x ${cantidad} = ${precio * cantidad}\n`
     })
-    return `EL NUMERO DE ESTUDIANTES M:${contadorDeM} Y EL NUMERO DE ESTUDIANTES F:${contadorDeF}`;
+    return factura;
 }
 
-let estudiantes = obtenerEstudiantes();
-if(estudiantes.length!==0){
-    console.log(
-        obtenerEstudianteMayorOMenorNota(estudiantes) + '\n',
-        obtenerEstudianteMayorOMenorNota(estudiantes,false) + '\n',
-        conteoDeGenerosDeLosEstudiantes(estudiantes)
-    );
-}else{
-    console.log(`NO HAY ESTUDIANTES REGISTRADOS`)
-}
+let articulos = registrarArticulos();
+console.log(mostrarLoQueDebePagar(articulos));

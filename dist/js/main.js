@@ -1,50 +1,24 @@
 "use strict";
-function obtenerEstudiantes() {
-    var _a, _b, _c;
-    let estudiantes = [];
+function registrarArticulos() {
+    var _a;
+    let articulos = [];
     do {
-        let nombreEstudiante = (_a = prompt('INGRESA EL NOMBRE DEL ESTUDIANTE')) === null || _a === void 0 ? void 0 : _a.trim().toLocaleUpperCase(), generoEstudiante = (_b = prompt('INGRESA EL GENERO DEL ESTUDIANTE\nM/F=>')) === null || _b === void 0 ? void 0 : _b.trim().toLocaleUpperCase(), notaEstudiante = parseFloat(prompt('INGRESA LA NOTA DEL ESTUDIANTE=>'));
-        if ((generoEstudiante !== 'M' && generoEstudiante !== 'F') || nombreEstudiante.length == 0)
-            continue;
-        const nuevoEstudiante = {
-            nombre: nombreEstudiante,
-            genero: generoEstudiante,
-            nota: notaEstudiante
+        const NuevoArticulo = {
+            nombre: prompt(`INGRESA EL NOMBRE DEL PRODUCTO\n=>`),
+            precio: parseFloat(prompt(`INGRESA EL PRECIO DEL PRODUCTO\n=>`)),
+            cantidad: parseInt(prompt(`INGRESA LA CANTIDAD DE ARTICULOS QUE EL CLIENTE LLEVARA`))
         };
-        estudiantes.unshift(nuevoEstudiante);
-    } while (((_c = prompt('DESEA AGREGAR ALGUN ESTUDAIANTE\nDIGITE "SI" PARA CONTINUAR.=>')) === null || _c === void 0 ? void 0 : _c.toUpperCase()) == 'SI');
-    return estudiantes;
+        articulos.unshift(NuevoArticulo);
+    } while (((_a = prompt('DESEA REGISTRAR OTRO PRODUCTO?\nDIGITE "SI" PARA CONTINUAR. =>')) === null || _a === void 0 ? void 0 : _a.toLocaleUpperCase()) == 'SI');
+    return articulos;
 }
-function obtenerEstudianteMayorOMenorNota(estudiantes, solicitudDeLaMayorNota = true) {
-    let estudianteMayorNota = estudiantes.reduce((estudianteAnterior, estudianteSiguiente) => {
-        if (solicitudDeLaMayorNota)
-            return mayorNota(estudianteAnterior, estudianteSiguiente);
-        return menorNota(estudianteAnterior, estudianteSiguiente);
+function mostrarLoQueDebePagar(articulos) {
+    let factura = '';
+    articulos.forEach((articulo) => {
+        let { nombre, cantidad, precio } = articulo;
+        factura += `${nombre}: ${precio} x ${cantidad} = ${precio * cantidad}\n`;
     });
-    return `EL ESTUDIANTE ${estudianteMayorNota.nombre}
-     CON LA NOTA DE ${estudianteMayorNota.nota} POSEE LA ${solicitudDeLaMayorNota ? 'MAYOR' : 'MENOR'} NOTA`;
+    return factura;
 }
-function mayorNota(estudianteAnterior, estudianteSiguiente) {
-    if (estudianteAnterior.nota < estudianteSiguiente.nota)
-        return estudianteSiguiente;
-    return estudianteAnterior;
-}
-function menorNota(estudianteAnterior, estudianteSiguiente) {
-    if (estudianteAnterior.nota > estudianteSiguiente.nota)
-        return estudianteSiguiente;
-    return estudianteAnterior;
-}
-function conteoDeGenerosDeLosEstudiantes(estudiantes) {
-    let contadorDeM = 0, contadorDeF = 0;
-    estudiantes.forEach((estudiante) => {
-        estudiante.genero == 'F' ? contadorDeF++ : contadorDeM++;
-    });
-    return `EL NUMERO DE ESTUDIANTES M:${contadorDeM} Y EL NUMERO DE ESTUDIANTES F:${contadorDeF}`;
-}
-let estudiantes = obtenerEstudiantes();
-if (estudiantes.length !== 0) {
-    console.log(obtenerEstudianteMayorOMenorNota(estudiantes) + '\n', obtenerEstudianteMayorOMenorNota(estudiantes, false) + '\n', conteoDeGenerosDeLosEstudiantes(estudiantes));
-}
-else {
-    console.log(`NO HAY ESTUDIANTES REGISTRADOS`);
-}
+let articulos = registrarArticulos();
+console.log(mostrarLoQueDebePagar(articulos));
