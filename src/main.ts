@@ -1,37 +1,36 @@
 /* TALLER 02 */
 /* ///////////////////////////////////////////////////////////// */
 /* 
-7. Programa que pida el ingreso del nombre y precio de un artículo y la
-cantidad que lleva el cliente. Mostrar lo que debe pagar el comprador
-en su factura.
+8. Programa que Ingrese por teclado:
+a. el valor del lado de un cuadrado para mostrar por pantalla el
+perímetro del mismo
+b. la base y la altura de un rectángulo para mostrar el área del
+mismo
 */
-type Articulo = {
-    nombre:string,
-    precio:number,
-    cantidad:number
+type Cuadrilatero = {
+    lados:number[] | number,
+    primetro:()=>string
 }
+let 
+    cuadrado:Cuadrilatero = {
+        lados: 0,
+        primetro(){                        
+            return `EL PERIMETRO DEL CUADRADO ES ${this.lados as number * 4}`;
+        } 
+    },
+    rectangulo:Cuadrilatero = {
+        lados: [0,0],
+        primetro(){            
+            return `EL PERIMETRO DEL RECTANGULO ES  ${(2 * (this.lados as number[])[0] as number ) + (2 * (this.lados as number[])[1 as number] )}`;
+        }
+    };    
 
-function registrarArticulos():Articulo[]{
-    let articulos:Articulo[] = [];
-    do {
-        const NuevoArticulo:Articulo = {
-            nombre: prompt(`INGRESA EL NOMBRE DEL PRODUCTO\n=>`) as string,
-            precio: parseFloat(prompt(`INGRESA EL PRECIO DEL PRODUCTO\n=>`) as string),
-            cantidad: parseInt(prompt(`INGRESA LA CANTIDAD DE ARTICULOS QUE EL CLIENTE LLEVARA`) as string)
-        };
-        articulos.unshift(NuevoArticulo)
-    } while (prompt('DESEA REGISTRAR OTRO PRODUCTO?\nDIGITE "SI" PARA CONTINUAR. =>')?.toLocaleUpperCase()=='SI');
-    return articulos;
-}
+cuadrado.lados = parseInt(prompt('INGRESA EL VALOR DEL LADO DEL CUADRADO\n=>') as string)
+alert(cuadrado.primetro());
 
-function mostrarLoQueDebePagar(articulos:Articulo[]):string{
-    let factura:string = '';
-    articulos.forEach((articulo:Articulo)=>{
-        let {nombre,cantidad,precio} =  articulo
-        factura+=`${nombre}: ${precio} x ${cantidad} = ${precio * cantidad}\n`
-    })
-    return factura;
-}
+rectangulo.lados = [
+    parseInt(prompt('INGRESA LA ALTURA DEL RECTANGULO') as string),
+    parseInt(prompt('INGRESA LA BASE DEL RECTANGULO') as string)
+];
 
-let articulos = registrarArticulos();
-console.log(mostrarLoQueDebePagar(articulos));
+alert(rectangulo.primetro());
