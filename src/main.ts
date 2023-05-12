@@ -1,78 +1,52 @@
 /* TALLER 02 */
 /* ///////////////////////////////////////////////////////////// */
 /* 
-9. N atletas han pasado a finales en salto triple en los juegos
-olímpicos femenino de 2022. Diseñe un programa que pida por
-teclado los nombres de cada atleta finalista y a su vez, sus
-marcas del salto en metros. Informar el nombre de la atleta
-campeona que se quede con la medalla de oro y si rompió
-récord, reportar el pago que será de 500 millones. El récord
-esta en 15,50 metros.
+10. Desarrolle un programa cíclico que capture un dato
+numérico cada vez, y los vaya acumulando. El programa se
+detiene cuando el usuario digita un cero. El programa debe
+mostrar: LA SUMATORIA DE LOS VALORES, EL VALOR DEL
+PROMEDIO, CUÁNTOS VALORES FUERON DIGITADOS, MAYOR
+VALOR Y MENOR VALOR.
 */
-
-type Atleta = {
-    nombre:string,
-    marca:number
-}
-
-function crearAtleta():null | Atleta {
+function campturarNumeros():number[]{
     let 
-        nombre = (prompt('INGRESE EL NOMBRE DE LA COMPETIDORA\n=>') as string).trim().toUpperCase(),
-        marcas:number[] = [],
-        mejorMarca = 0;
-
-    for (let i = 0; i < 3; i++) 
-        marcas.unshift(parseFloat(prompt(`INGRESA LA MARCA N°${i+1} DE ${nombre}\n =>`) as string));
-
-    mejorMarca = mayorMarca(marcas);
-
-    if(!validarDatos(nombre ,marcas)) return null;
-    return {
-        nombre: nombre,
-        marca:mejorMarca 
-    }
+    nuevoNumero:number,
+    numeros:number[] = [];
+    
+    while (nuevoNumero = parseInt(prompt('INGRESA UN NUEVO VALOR A LA SUMATORIA') as string)) {
+        numeros.unshift(nuevoNumero);
+    }    
+    return numeros    
 }
 
-function validarDatos(nombre:string,marcas:number[]):boolean{    
-    if(nombre.length==0, marcas.filter((marca)=>isNaN(marca)).length != 0) return false;
-    return true    
-}
-
-function mayorMarca(marcas:number[]){
-    return marcas.reduce((marcaAnterior:number,marcaSiguiente:number):number=>{
-        if(marcaAnterior < marcaSiguiente) return marcaSiguiente;
-        return marcaAnterior;
+function sumatoriaDeLosValores(...numeros:number[]){
+    return numeros.reduce((numeroPrevio:number,numeroSiguiente:number):number=>{
+        return numeroPrevio + numeroSiguiente;
     })
 }
 
-function obtenerGanador(atletas:Atleta[]):string{
-    const AtletaGanador:Atleta =  atletas.reduce((atletaAnterior:Atleta,atletaSiguiente:Atleta)=>{
-        if(atletaAnterior.marca < atletaSiguiente.marca) return atletaSiguiente;
-        return atletaAnterior;        
-    });
-
-    return `
-        LA ATLETA GANADORA FUE ${AtletaGanador.nombre} CON UN PUNTAJE DE ${AtletaGanador}M\n
-        ${AtletaGanador.marca > 15.50?'ADEMAS GANO':'PERO NO GANO'} EL PREMIO DE 500 M POR ROMPER EL RECORD MUNDIAL
-    `;
+function mayorNumero(...numeros:number[] ){
+    return numeros.reduce((numeroPrevio:number,numeroSiguiete:number):number=>{
+        if(numeroPrevio<numeroSiguiete)return numeroSiguiete;
+        return numeroPrevio;
+    })
+}
+function  menorNumero(...numeros:number[] ){
+    return numeros.reduce((numeroPrevio:number,numeroSiguiete:number):number=>{
+        if(numeroPrevio>numeroSiguiete)return numeroSiguiete;
+        return numeroPrevio;
+    })
+}
+function promedioNumeros(numeros:number[]){
+    return sumatoriaDeLosValores(...numeros)/numeros.length;
 }
 
-function agregarAtletas():Atleta[]{
-    let atletas:Atleta[] = [];
-    do {        
-        const nuevaAtleta = crearAtleta();        
+const Numeros = campturarNumeros();
 
-        if(nuevaAtleta == null) continue;
-        else atletas.unshift(nuevaAtleta);
-        
-    } while ((prompt(`DESEA ANADIR OTRA COMPETIDORA\nDIGITE "SI" PARA CONTINUAR.=>`) as string).trim().toUpperCase() == 'SI');
-
-    return atletas;
-}
-
-const Atletas = agregarAtletas()
-
-
-if(Atletas.length == 0) alert('NO HAY ATLETAS REGISTRADOS')
-else alert(obtenerGanador(Atletas));
-
+console.log(`
+LA SUMATORIA DE LOS VALORES ES DE ${sumatoriaDeLosValores(...Numeros)}.\n
+EL VALOR DEL PROMEDIO ES ${promedioNumeros(Numeros)}.\n
+CUANTOS VALORES FUERON DIGITADOS ${Numeros.length}.\n
+EL MAYOR NUMERO ES ${mayorNumero(...Numeros)}.\n
+EL MENOR NUMERO ES ${menorNumero(...Numeros)}.\n
+`);

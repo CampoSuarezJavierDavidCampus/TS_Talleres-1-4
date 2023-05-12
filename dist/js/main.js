@@ -1,52 +1,38 @@
 "use strict";
-function crearAtleta() {
-    let nombre = prompt('INGRESE EL NOMBRE DE LA COMPETIDORA\n=>').trim().toUpperCase(), marcas = [], mejorMarca = 0;
-    for (let i = 0; i < 3; i++)
-        marcas.unshift(parseFloat(prompt(`INGRESA LA MARCA N°${i + 1} DE ${nombre}\n =>`)));
-    mejorMarca = mayorMarca(marcas);
-    if (!validarDatos(nombre, marcas))
-        return null;
-    return {
-        nombre: nombre,
-        marca: mejorMarca
-    };
+function campturarNumeros() {
+    let nuevoNumero, numeros = [];
+    while (nuevoNumero = parseInt(prompt('INGRESA UN NUEVO VALOR A LA SUMATORIA'))) {
+        numeros.unshift(nuevoNumero);
+    }
+    return numeros;
 }
-function validarDatos(nombre, marcas) {
-    if (nombre.length == 0, marcas.filter((marca) => isNaN(marca)).length != 0)
-        return false;
-    return true;
-}
-function mayorMarca(marcas) {
-    return marcas.reduce((marcaAnterior, marcaSiguiente) => {
-        if (marcaAnterior < marcaSiguiente)
-            return marcaSiguiente;
-        return marcaAnterior;
+function sumatoriaDeLosValores(...numeros) {
+    return numeros.reduce((numeroPrevio, numeroSiguiente) => {
+        return numeroPrevio + numeroSiguiente;
     });
 }
-function obtenerGanador(atletas) {
-    const AtletaGanador = atletas.reduce((atletaAnterior, atletaSiguiente) => {
-        if (atletaAnterior.marca < atletaSiguiente.marca)
-            return atletaSiguiente;
-        return atletaAnterior;
+function mayorNumero(...numeros) {
+    return numeros.reduce((numeroPrevio, numeroSiguiete) => {
+        if (numeroPrevio < numeroSiguiete)
+            return numeroSiguiete;
+        return numeroPrevio;
     });
-    return `
-        LA ATLETA GANADORA FUE ${AtletaGanador.nombre} CON UN PUNTAJE DE ${AtletaGanador.marcaAnterior}M\n
-        ${AtletaGanador.marca > 15.50 ? 'ADEMAS GANO' : 'PERO NO GANO'} EL PREMIO DE 500 M POR ROMPER EL RECORD MUNDIAL
-    `;
 }
-function agregarAtletas() {
-    let atletas = [];
-    do {
-        const nuevaAtleta = crearAtleta();
-        if (nuevaAtleta == null)
-            continue;
-        else
-            atletas.unshift(nuevaAtleta);
-    } while (prompt(`DESEA ANADIR OTRA COMPETIDORA\nDIGITE "SI" PARA CONTINUAR.=>`).trim().toUpperCase() == 'SI');
-    return atletas;
+function menorNumero(...numeros) {
+    return numeros.reduce((numeroPrevio, numeroSiguiete) => {
+        if (numeroPrevio > numeroSiguiete)
+            return numeroSiguiete;
+        return numeroPrevio;
+    });
 }
-const Atletas = agregarAtletas();
-if (Atletas.length == 0)
-    alert('NO HAY ATLETAS REGISTRADOS');
-else
-    alert(obtenerGanador(Atletas));
+function promedioNumeros(numeros) {
+    return sumatoriaDeLosValores(...numeros) / numeros.length;
+}
+const Numeros = campturarNumeros();
+console.log(`
+LA SUMATORIA DE LOS VALORES ES DE ${sumatoriaDeLosValores(...Numeros)}.\n
+EL VALOR DEL PROMEDIO ES ${promedioNumeros(Numeros)}.\n
+CUANTOS VALORES FUERON DIGITADOS ${Numeros.length}.\n
+EL MAYOR NUMERO ES ${mayorNumero(...Numeros)}.\n
+EL MENOR NUMERO ES ${menorNumero(...Numeros)}.\n
+`);
